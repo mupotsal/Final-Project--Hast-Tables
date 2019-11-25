@@ -11,13 +11,23 @@ using namespace std;
 
 class HashTable {
 public:
-	static const int size = 11; // initial size of hash table is prime to help with collision resolution
+	static const int size = 9; // initial size of hash table is prime to help with collision resolution
 	int slots[size]; // list to hold key items
 	string data[size]; // list to hold data values
 
-	//int hashfunction(int key) { // implements remainder method
-	//	return key % size;
-	//}
+	int hashfunction(string key) { // another hash function using weighting
+		int a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z;
+		a = 1;
+		b = 2;
+		c = 3;
+		d = 4;
+		e = 5;
+		f = 6;
+
+		int size;
+
+		return  size;
+	}
 
 
 	int hashfunction(int key) { // implements remainder method
@@ -105,8 +115,7 @@ ostream& operator<<(ostream& stream, HashTable& hash) {
 	return stream;
 }
 
-int main( ){
-
+int table_values() {
 
 	HashTable h;
 
@@ -119,18 +128,29 @@ int main( ){
 	h.put(44, "goat");
 	h.put(55, "pig");
 	h.put(20, "chicken");
-	cout << h << endl;
+	//cout << h << endl;
 	h.put(20, "chicken");
 	h.put(17, "tiger");
 	h.put(20, "duck");
-	cout << h.get(20) << endl;
-	cout << h.get(99) << endl;
-	cout << h.get(93) << endl;
+	
 	while (true) {
 		int code;
 		cout << "what is the code" << endl;
-		cin>> code;
-		cout << h.get(code) << endl;
+		cin >> code;	
+	//	if (h.get(code) NULL) {
+			cout << h.get(code) << endl;
+		//}
+		//if (code in h.key())
+	}
+		
+		
+	
+}
+
+int main( ){
+
+	while (true) {
+		table_values();
 	}
 	
 	cout << "Change me!" << endl;
