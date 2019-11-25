@@ -13,7 +13,10 @@ class HashTable {
 public:
 	static const int size = 9; // initial size of hash table is prime to help with collision resolution
 	int slots[size]; // list to hold key items
-	string data[size]; // list to hold data values
+	string data[size]; // list to hold data values 
+
+
+	//modify the following hashing function so that one can use strings as Keys to data
 
 	int hashfunction(string key) { // another hash function using weighting
 		int a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z;
@@ -132,10 +135,11 @@ int table_values() {
 	h.put(20, "chicken");
 	h.put(17, "tiger");
 	h.put(20, "duck");
-	
+	cout << "You are going to enter the id of the animal to retrieve its name and other information" << endl;
 	while (true) {
 		int code;
-		cout << "what is the code" << endl;
+		
+		cout << "what is the animal's code" << endl;
 		cin >> code;	
 	//	if (h.get(code) NULL) {
 			cout << h.get(code) << endl;
