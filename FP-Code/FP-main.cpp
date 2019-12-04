@@ -11,14 +11,14 @@ using namespace std;
 
 class HashTable {
 public:
-	static const int size = 25; // initial size of hash table is prime to help with collision resolution
+	static const int size = 90; // initial size of hash table is prime to help with collision resolution// make this big so that it can take the values of many items.
 	int slots[size]; // list to hold key items
 	string data[size]; // list to hold data values 
 
 
 	//modify the following hashing function so that one can use strings as Keys to data
 
-	int converter(string key) { // another hash function using weighting
+	int converter(string key) { // This converts keys to a number.
 		int sum = 0;
 		char arr[26] = { 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
 		for (int i = 0; i < key.size(); i++) {
@@ -36,12 +36,14 @@ public:
 
 
 	int hashfunction(int key) { // implements remainder method
-		return (key^2) % size;
+		return (key) % size;
 	}
 	// Computes original hashvalue, and if slot is
-	// not empty iterates until empty slot is found // Using linear probing for collision resolution.
+	// not empty iterates until empty slot is found // Using linear probing for collision resolution
+	int square = 0;
 	int rehash(int oldhash) {
-		return (oldhash + 1) % size;
+		square += 1;
+		return (oldhash + square*square) % size; // They used linear probing but we can change that to quadratic probing to reduce clustering.
 	}
 
 	// Function that assumes there will eventually be
@@ -129,7 +131,7 @@ public:
 		bool stop = false;
 		bool found = false;
 		int position = startslot;
-		while (data[position] != "" && !found && !stop) {
+		while (position != size && !found && !stop) {
 			if (slots[position] == key) {
 				found = true;
 				val = data[position];
@@ -150,13 +152,13 @@ public:
 
 	string get(string keys) {
 		int key = converter(keys);
-		int startslot = hashfunction(key);
+		int startslot = hashfunction(key); // may need to mpdify this to enhance quadratic probing
 
 		string val;
 		bool stop = false;
 		bool found = false;
 		int position = startslot;
-		while (data[position] != "" && !found && !stop) {
+		while (position != size && !found && !stop) {
 			if (slots[position] == key) {
 				found = true;
 				val = data[position];
@@ -190,7 +192,7 @@ int table_values() {
 	HashTable h;
 	h.put("WAFULA", "WAFULA information  IS HIDDEN FROM YOU");
 	h.put("LIBERTY", "A Berea College student stdying");
-	h.put(54, "cat");
+	h.put(54, "cat");	
 	h.put(26, "dog");
 	h.put(93, "lion");
 	h.put(17, "tiger");
@@ -199,27 +201,38 @@ int table_values() {
 	h.put(44, "goat");
 	h.put(55, "pig");
 	h.put(20, "chicken");
+	h.put(24, "hen");
+
 	
-	//cout << h << endl;
+	cout << h << endl;
 	h.put(20, "chicken");
 	h.put(17, "tiger");
 	h.put(20, "duck");
 	cout << "You are going to enter the id of the animal to retrieve its name and other information" << endl;
 	while (true) {
 		int code;
-		string code2;
-		
-		cout << "what is the animal's code" << endl;
-		cin >> code2;
-		//cin >> code;
+		string code2;		
+		cout << "If you want to search for Animals type y and if you want to search for students files type s" << endl;
+		string choice;
+		cin >> choice;
+		if (choice == "y") {
+			
+			cout << "What is the code of the animal?" << endl;
+			cin >> code;
+			cout << h.get(code) << endl;
+		}
+		else {
+			
+			cout << "What is the code of the animal?" << endl;
+			cin >> code2;
+			cout << h.get(code2) << endl;
+		}
+
 		
 
-	//	if (h.get(code) NULL) {
-			cout << h.get(code2) << endl;
-			
-		//	cout << h.get(code) << endl;
-		//}
-		//if (code in h.key())
+		
+		
+
 	}
 		
 		
