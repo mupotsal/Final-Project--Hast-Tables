@@ -1,5 +1,5 @@
 // Final Project
-// Liberty Mupotsa
+// Liberty Mupotsa and Anthony W Wafula
 
 #include <iostream>
 
@@ -17,7 +17,11 @@ public:
 
 
 	//modify the following hashing function so that one can use strings as Keys to data
-
+	void setfunction(int key) {
+		slots[key] = NULL;
+		data[key].clear();
+		
+	}
 	int converter(string key) { // This converts keys to a number.
 		int sum = 0;
 		char arr[26] = { 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
@@ -83,6 +87,8 @@ public:
 		}
 	}
 
+
+
 	void put( string keyys, string val) {
 
 		//That is where we need to do the ,maths to change the string key to an integer value.
@@ -121,6 +127,36 @@ public:
 		}
 	}
 
+	// remove an element from the hashtable
+	void remove(int key) {
+		//int key = converter(keys);
+		int startslot = hashfunction(key); // may need to mpdify this to enhance quadratic probing
+
+		string val;
+		bool stop = false;
+		bool found = false;
+		int position = startslot;
+		while (position != size && !found && !stop) {
+			if (slots[position] == key) {
+				found = true;
+				setfunction(key);
+				
+			}
+			else {
+				position = rehash(position);
+				if (position == startslot) {
+					found = true;
+					
+					
+				}
+			}
+
+		}
+		
+	}
+
+
+
 	// computes the initial hash value
 	// if value is not in the initial slot, uses
 	// rehash to locate the next position
@@ -147,9 +183,48 @@ public:
 		return val;
 	}
 
+	// the following method checks if the key is in the map.
+	bool in(int key) {
+		int startslot = hashfunction(key);
+
+		string val;
+		bool stop = false;
+		bool found = false;
+		int position = startslot;
+		while (position != size && !found && !stop) {
+			if (slots[position] == key) {
+				//returns true if the value is found
+				return true;	
+
+			}
+			else {
+				position = rehash(position);
+				if (position == startslot) {
+					//stops if the value is not found
+					stop= true;
+				}
+			}
+
+		}
+		return false;
+	}
+
+
+	//find the lenth of the values in the hashtable
+	int len() {
+		int the_size = 0;
+		for (int i = 0; i < size; i++) {
+			//adds up values cummulativelly 
+			if (data[i].empty() == 0) {
+				the_size += 1;
+			}
+		}
+		return the_size;
+	}
+
 	friend ostream& operator<<(ostream& stream, HashTable& hash);
 
-
+	//searchs to find a value in the table
 	string get(string keys) {
 		int key = converter(keys);
 		int startslot = hashfunction(key); // may need to mpdify this to enhance quadratic probing
@@ -173,12 +248,12 @@ public:
 		}
 		return val;
 	}
-
+	//frind or overload
 	friend ostream& operator<<(ostream& stream, HashTable& hash);
 };
 
 
-
+//overloading
 ostream& operator<<(ostream& stream, HashTable& hash) {
 	for (int i = 0; i < hash.size; i++) {
 		stream << hash.slots[i] << ": " << hash.data[i] << endl;
@@ -187,6 +262,8 @@ ostream& operator<<(ostream& stream, HashTable& hash) {
 	return stream;
 }
 
+
+//hashtable values
 int table_values() {
 
 	HashTable h;
@@ -194,6 +271,8 @@ int table_values() {
 	h.put("LIBERTY", "A Berea College student stdying");
 	h.put(54, "cat");	
 	h.put(26, "dog");
+	h.put(46, "horse");
+	h.put(56, "donkey");
 	h.put(93, "lion");
 	h.put(17, "tiger");
 	h.put(77, "bird");
@@ -202,13 +281,20 @@ int table_values() {
 	h.put(55, "pig");
 	h.put(20, "chicken");
 	h.put(24, "hen");
+	
 
 	
-	cout << h << endl;
-	h.put(20, "chicken");
-	h.put(17, "tiger");
+	cout << h <<" This is the end of the first table"<< endl;
+
+	h.put(20, "chicken");	
 	h.put(20, "duck");
+	h.remove(17);
+	cout << "This is the second table" << endl;
+	cout << h << endl;
 	cout << "You are going to enter the id of the animal to retrieve its name and other information" << endl;
+	cout << "Checking to see if the value is in the hash table " << h.in(20) << endl;
+	cout << "Checking to see if (5)the value is in the hash table " << h.in(25) << endl;
+	cout << "Checking to see  the len " << h.len() << endl;
 	while (true) {
 		int code;
 		string code2;		
@@ -223,7 +309,7 @@ int table_values() {
 		}
 		else {
 			
-			cout << "What is the code of the animal?" << endl;
+			cout << "What is the code of the Student?" << endl;
 			cin >> code2;
 			cout << h.get(code2) << endl;
 		}
@@ -248,6 +334,7 @@ int main( ){
 	cout << "Change me!" << endl;
 
 	char enter;
+	
 	cin >> enter;
 return 0;
 }
