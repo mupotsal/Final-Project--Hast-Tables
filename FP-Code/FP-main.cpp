@@ -285,9 +285,8 @@ int table_values() {
 
 	
 	cout << h <<" This is the end of the first table"<< endl;
-
-	h.put(20, "chicken");	
-	h.put(20, "duck");
+	
+	h.put(21, "duck");
 	h.remove(17);
 	cout << "This is the second table" << endl;
 	cout << h << endl;
