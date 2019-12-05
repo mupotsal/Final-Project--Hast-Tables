@@ -216,6 +216,7 @@ public:
 		for (int i = 0; i < size; i++) {
 			//adds up values cummulativelly 
 			if (data[i].empty() == 0) {
+				cout << " This is the data" << data[i] << endl;
 				the_size += 1;
 			}
 		}
@@ -270,6 +271,7 @@ int table_values() {
 	h.put("WAFULA", "WAFULA information  IS HIDDEN FROM YOU");
 	h.put("LIBERTY", "A Berea College student stdying");
 	h.put(54, "cat");	
+	h.put("AZAH", "  THis is Azah's information");
 	h.put(26, "dog");
 	h.put(46, "horse");
 	h.put(56, "donkey");
@@ -280,12 +282,8 @@ int table_values() {
 	h.put(44, "goat");
 	h.put(55, "pig");
 	h.put(20, "chicken");
-	h.put(24, "hen");
-	
-
-	
+		
 	cout << h <<" This is the end of the first table"<< endl;
-	
 	h.put(21, "duck");
 	h.remove(17);
 	cout << "This is the second table" << endl;
