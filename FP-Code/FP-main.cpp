@@ -290,7 +290,7 @@ int table_values() {
 	cout << "You are going to enter the id of the animal to retrieve its name and other information" << endl;
 	cout << "Checking to see if the value is in the hash table " << h.in(20) << endl;
 	cout << "Checking to see if (5)the value is in the hash table " << h.in(25) << endl;
-	cout << "Checking to see  the len " << h.len() << endl;
+	cout << "Checking to see  the len  " << h.len() << endl;
 	while (true) {
 		int code;
 		string code2;		
@@ -310,17 +310,12 @@ int table_values() {
 			cout << h.get(code2) << endl;
 		}
 
-		
-
-		
-		
-
 	}
 		
 		
 	
 }
-
+//main function
 int main( ){
 
 	while (true) {
