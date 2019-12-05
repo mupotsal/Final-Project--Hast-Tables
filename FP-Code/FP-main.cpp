@@ -193,6 +193,7 @@ int table_values() {
 	h.put("WAFULA", "WAFULA information  IS HIDDEN FROM YOU");
 	h.put("LIBERTY", "A Berea College student stdying");
 	h.put(54, "cat");	
+	h.put("AZAH", "  THis is Azah's information");
 	h.put(26, "dog");
 	h.put(93, "lion");
 	h.put(17, "tiger");
