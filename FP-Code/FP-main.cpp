@@ -281,13 +281,8 @@ int table_values() {
 	h.put(44, "goat");
 	h.put(55, "pig");
 	h.put(20, "chicken");
-	h.put(24, "hen");
-	
-
-	
+	h.put(24, "hen");	
 	cout << h <<" This is the end of the first table"<< endl;
-
-	h.put(20, "chicken");	
 	h.put(20, "duck");
 	h.remove(17);
 	cout << "This is the second table" << endl;
