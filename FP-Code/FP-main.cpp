@@ -275,6 +275,7 @@ int table_values() {
 	h.put(26, "dog");
 	h.put(46, "horse");
 	h.put(56, "donkey");
+
 	h.put(93, "lion");
 	h.put(17, "tiger");
 	h.put(77, "bird");
